@@ -1,0 +1,39 @@
+Part 1 - el server que ens presten
+
+He creat un domini amb el meu nom i cognom zmuhammad.io
+Després he creat un compte de correu amb aquell domini
+ aellahi@areebaellahi.io
+
+He enviat un email a joan@surfacad.edu i em dona un error de que aquest missatge no es pot arribar al destinatari perquè en un domini privat. 
+Després he provat enviar un email al meu compte de l’institut i no em dona cap error i el missatge a arribat en la safata d’entrada.
+
+
+
+Part 2 - el nostre server
+
+En play with docker:
+crearem un volum
+
+Després posem:
+docker run \-p 443:443 \-e TZ=Europe/Andorra \-v volum_mail_server:/data \--name "aellahi.edu" \-h "aellahi.edu" \-t analogic/poste.io
+Generació dels certificats:
+He decidit crear el certificat amb mkcert.
+Per fer lo posem:
+-sudo apt install libnss3-tools
+-mkcert client.org
+-mkcert server.org
+
+
+Part 3 - Docker a una vm debian
+  Com a root en el terminal inte, he instal·lat docker 
+El primer pas es borrar versions de docker que estan de abans.
+sudo apt-get purge docker lxc-docker docker-engine docker.io
+Per baixar el gpg de docker posem:
+apt -get update
+curl -fsSL https://download.docker.com/linux/debian/gpg | sudo apt-key add –
+sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/debian buster stable"
+Per instalar docker fem:
+sudo apt-get update
+sudo apt-get install docker-ce docker-ce-cli containerd.io
+Per veure l’estat:
+sudo systemctl status docker
